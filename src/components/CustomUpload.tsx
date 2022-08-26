@@ -1,6 +1,7 @@
 import { ChangeEvent, FC } from 'react'
 import { multiUpload } from '../firebase';
 import { ICustomDocument } from '../interfaces';
+import { batchUpload } from '../firebase/index';
 
 
 const CustomUpload: FC = () => {
@@ -22,7 +23,8 @@ const CustomUpload: FC = () => {
                             alreadyUsed: false,
                         }))
 
-                        multiUpload(docsToUpload);
+                        // multiUpload(docsToUpload);
+                        batchUpload(docsToUpload.slice(0,10000));
                     }
                 };
                 reader.readAsText(file);
