@@ -2,7 +2,7 @@ import { db } from "./firebase.config";
 import { doc, writeBatch, setDoc } from "firebase/firestore";
 import { IDocument } from "../interfaces";
 
-const PATH = 'test';
+const PATH = 'codes';
 const MAX_FIREBASE_DOCS_PER_BATCH = 500;
 
 const uploadDocument = (document: IDocument, id: string) => {
@@ -42,6 +42,8 @@ export const batchUpload = async (docs: IDocument[]) => {
         batchPartitionUpload(docs.slice(init, end + 1));
         console.log('PARTITION : ',docs.slice(init, end + 1))
     }
+
+    console.log(`[SUCCESS] Upload ${docs.length} documents `)
 
 }
 
